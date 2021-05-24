@@ -14,14 +14,11 @@ DB = os.getenv('DB')
 try:
   connection = psycopg2.connect(user=USER, password=PSSWD, host=HOST, port=PORT, database=DB)
   cursor = connection.cursor()
-  cursor.execute("SELECT * FROM person")
-  result = cursor.fetchall()
-  print(result)
 except (Exception, Error) as error:
   print("Error while connecting to PostgreSQL", error)
   exit()
 
-gui.display()
+gui.display(cursor)
 
 if (connection):
   cursor.close()
